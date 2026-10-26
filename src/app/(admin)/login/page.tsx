@@ -49,10 +49,10 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Field label="Email Administrator" icon={<FaEnvelope />}>
-            <input name="email" type="email" required autoComplete="username" className={fieldInput} />
+            <input name="email" type="email" required autoComplete="username" placeholder="admin@styleonmotion.com" className={fieldInput} />
           </Field>
           <Field label="Password" icon={<FaLock />}>
-            <input name="password" type="password" required autoComplete="current-password" className={fieldInput} />
+            <input name="password" type="password" required autoComplete="current-password" placeholder="Masukkan password" className={fieldInput} />
           </Field>
 
           <button
