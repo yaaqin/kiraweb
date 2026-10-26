@@ -7,10 +7,15 @@ import { Modal } from "@/components/admin/modal";
 import { useToast } from "@/components/admin/toast";
 import { cardClass, inputClass, labelClass } from "@/components/admin/ui";
 import { useApiData } from "@/components/admin/use-api-data";
+import { Select } from "@/components/ui/select";
 import { apiFetch } from "@/lib/api";
 import type { AdminUser, Role } from "@/lib/types";
 
 const ROLE_LABELS: Record<Role, string> = { SUPERADMIN: "Super Admin", ADMIN: "Admin" };
+const ROLE_OPTIONS = [
+  { value: "ADMIN", label: "Admin (POS & Catalog)" },
+  { value: "SUPERADMIN", label: "Super Admin (+ Kelola Akun)" },
+];
 
 export function AccountsView() {
   const { state } = useAuth();
@@ -197,10 +202,7 @@ function UserModal({
         </div>
         <div>
           <label className={labelClass}>Role</label>
-          <select name="role" defaultValue={user?.role ?? "ADMIN"} disabled={isSelf} className={inputClass}>
-            <option value="ADMIN">Admin (POS & Catalog)</option>
-            <option value="SUPERADMIN">Super Admin (+ Kelola Akun)</option>
-          </select>
+          <Select name="role" defaultValue={user?.role ?? "ADMIN"} disabled={isSelf} options={ROLE_OPTIONS} />
         </div>
         {user && !isSelf && (
           <label className="flex items-center gap-2 pt-1 font-bold">

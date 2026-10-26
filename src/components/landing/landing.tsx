@@ -24,6 +24,7 @@ import {
   FaWhatsapp,
   FaXmark,
 } from "react-icons/fa6";
+import { Select } from "@/components/ui/select";
 import { BRAND, whatsappLink } from "@/lib/config";
 import { CATEGORIES, rupiah } from "@/lib/format";
 import type { CatalogItem, Category } from "@/lib/types";
@@ -526,17 +527,7 @@ function CartSheet({
           </div>
           <label className="block">
             <span className="mb-1 block text-[10px] font-bold text-charcoal-900/80">Metode Pembayaran</span>
-            <select
-              value={payment}
-              onChange={(e) => setPayment(e.target.value)}
-              className="w-full rounded-xl border border-blush-200 bg-white p-2 text-xs focus:outline-none"
-            >
-              {PAYMENT_OPTIONS.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
+            <Select value={payment} onChange={(e) => setPayment(e.target.value)} options={PAYMENT_OPTIONS} tone="white" />
           </label>
           <button
             onClick={checkout}

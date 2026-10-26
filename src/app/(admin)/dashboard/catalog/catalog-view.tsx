@@ -7,6 +7,7 @@ import { Modal } from "@/components/admin/modal";
 import { useToast } from "@/components/admin/toast";
 import { cardClass, inputClass, labelClass } from "@/components/admin/ui";
 import { useApiData } from "@/components/admin/use-api-data";
+import { Select } from "@/components/ui/select";
 import { apiFetch } from "@/lib/api";
 import { CATEGORIES, categoryLabel, rupiah } from "@/lib/format";
 import type { CatalogItem, Category } from "@/lib/types";
@@ -185,13 +186,7 @@ function ItemModal({
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className={labelClass}>Kategori</label>
-            <select name="category" defaultValue={item?.category ?? "HAIRCUT"} className={inputClass}>
-              {CATEGORIES.map((c) => (
-                <option key={c.value} value={c.value}>
-                  {c.label}
-                </option>
-              ))}
-            </select>
+            <Select name="category" defaultValue={item?.category ?? "HAIRCUT"} options={CATEGORIES} />
           </div>
           <div>
             <label className={labelClass}>Estimasi Waktu</label>
