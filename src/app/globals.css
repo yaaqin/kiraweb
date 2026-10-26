@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-blush-50: #fdf7f5;
+  --color-blush-100: #f5e6e3;
+  --color-blush-200: #e8a598;
+  --color-blush-300: #d88a8a;
+  --color-blush-400: #c86b6b;
+  --color-blush-500: #b05353;
+  --color-blush-600: #8e3838;
+
+  --color-charcoal-800: #3d3135;
+  --color-charcoal-900: #2a2024;
+  --color-charcoal-950: #1c1417;
+
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: var(--font-jakarta), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@utility btn-blush {
+  background: linear-gradient(135deg, #e8a598 0%, #c86b6b 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(200, 107, 107, 0.25);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(200, 107, 107, 0.35);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+  &:disabled {
+    opacity: 0.6;
+    transform: none;
+    cursor: not-allowed;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-blush-50);
+  color: var(--color-charcoal-900);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-blush-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-blush-200);
+  border-radius: 9999px;
+}
+
+/* Receipt printing: only the element marked .print-area is printed. */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+  }
+  .no-print {
+    display: none !important;
+  }
 }
