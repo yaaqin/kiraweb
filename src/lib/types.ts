@@ -65,3 +65,31 @@ export interface SalesSummary {
   topItem: string | null;
   paymentBreakdown: Record<PaymentMethod, number>;
 }
+
+export type FinanceRange = "today" | "week" | "month" | "all";
+export type LedgerKind = "SALE" | "EXPENSE" | "PETTY_CASH";
+
+export interface LedgerEntry {
+  kind: LedgerKind;
+  id: number;
+  ref: string;
+  date: string;
+  description: string;
+  account: PaymentMethod;
+  debit: number;
+  credit: number;
+  pic: string | null;
+}
+
+export interface FinanceReport {
+  range: FinanceRange;
+  balances: Record<PaymentMethod, number>;
+  period: {
+    revenue: number;
+    revenueByMethod: Record<PaymentMethod, number>;
+    expenses: number;
+    pettyCash: number;
+  };
+  ledger: LedgerEntry[];
+  trend: { date: string; revenue: number; expenses: number }[];
+}

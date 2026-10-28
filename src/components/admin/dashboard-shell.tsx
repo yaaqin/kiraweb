@@ -13,6 +13,7 @@ import {
   FaScissors,
   FaShieldHalved,
   FaUsersGear,
+  FaWallet,
   FaXmark,
 } from "react-icons/fa6";
 import { useAuth } from "@/components/admin/auth-provider";
@@ -32,6 +33,7 @@ const NAV: NavItem[] = [
   { href: "/dashboard/pos", label: "POS & Billing", subtitle: "Kalkulator kasir & cetak struk", icon: FaCashRegister },
   { href: "/dashboard/catalog", label: "Catalog & Harga", subtitle: "Ubah tarif treatment & produk", icon: FaScissors },
   { href: "/dashboard/transactions", label: "Riwayat Pembayaran", subtitle: "Arsip nota pembayaran", icon: FaReceipt },
+  { href: "/dashboard/finance", label: "Keuangan", subtitle: "Buku besar, arus kas, neraca & petty cash", icon: FaWallet, roles: ["SUPERADMIN"] },
   { href: "/dashboard/accounts", label: "Akun Admin", subtitle: "Kelola akses admin & kasir", icon: FaUsersGear, roles: ["SUPERADMIN"] },
 ];
 

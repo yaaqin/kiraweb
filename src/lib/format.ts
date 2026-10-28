@@ -28,3 +28,10 @@ export function calculateTotals(subtotal: number, discountRate: number) {
   const tax = Math.round((subtotal - discount) * TAX_RATE);
   return { subtotal, discount, tax, total: subtotal - discount + tax };
 }
+
+/** Chart-of-accounts codes for the cash accounts each payment method lands in. */
+export const ACCOUNT_LABELS: Record<PaymentMethod, string> = {
+  CASH: "101 - Kas Fisik Kasir",
+  QRIS: "102 - Bank QRIS",
+  TRANSFER: "103 - Bank Transfer",
+};

@@ -14,7 +14,7 @@ import type { AdminUser, Role } from "@/lib/types";
 const ROLE_LABELS: Record<Role, string> = { SUPERADMIN: "Super Admin", ADMIN: "Admin" };
 const ROLE_OPTIONS = [
   { value: "ADMIN", label: "Admin (POS & Catalog)" },
-  { value: "SUPERADMIN", label: "Super Admin (+ Kelola Akun)" },
+  { value: "SUPERADMIN", label: "Super Admin (+ Keuangan & Kelola Akun)" },
 ];
 
 export function AccountsView() {
