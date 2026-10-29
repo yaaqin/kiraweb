@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaMagnifyingGlass, FaPen, FaPlus, FaTrash } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaPen, FaPlus, FaStar, FaTrash } from "react-icons/fa6";
 import { CategoryPills, type CategoryFilter } from "@/components/admin/category-pills";
 import { Modal } from "@/components/admin/modal";
 import { useToast } from "@/components/admin/toast";
@@ -76,11 +76,22 @@ export function CatalogView() {
             <tbody className="divide-y divide-blush-100">
               {visible.map((item) => (
                 <tr key={item.id} className="transition-all hover:bg-blush-50/50">
-                  <td className="p-3 font-bold text-charcoal-900">{item.name}</td>
+                  <td className="p-3 font-bold text-charcoal-900">
+                    <span className="flex items-center gap-1.5">
+                      {item.name}
+                      {item.isBestSeller && <FaStar className="text-amber-400" title="Best seller" />}
+                    </span>
+                    {item.description && (
+                      <span className="block max-w-xs truncate text-[10px] font-normal text-charcoal-900/50">{item.description}</span>
+                    )}
+                  </td>
                   <td className="p-3">
                     <span className="rounded-full bg-blush-100 px-2.5 py-0.5 text-[10px] font-bold uppercase text-blush-600">
                       {categoryLabel(item.category)}
                     </span>
+                    {item.subcategory && (
+                      <span className="ml-1 text-[10px] text-charcoal-900/50">· {item.subcategory}</span>
+                    )}
                   </td>
                   <td className="p-3 text-charcoal-900/70">{item.duration ?? "-"}</td>
                   <td className="p-3 font-bold text-blush-600">{rupiah(item.price)}</td>
@@ -158,6 +169,9 @@ function ItemModal({
       price: Number(form.get("price")),
       duration: text("duration"),
       imageUrl: text("imageUrl"),
+      description: text("description"),
+      subcategory: text("subcategory"),
+      isBestSeller: form.get("isBestSeller") === "on",
       isAvailable: form.get("isAvailable") === "on",
     };
 
@@ -208,13 +222,41 @@ function ItemModal({
         </div>
 
         <div>
-          <label className={labelClass}>URL Gambar (opsional, untuk produk retail)</label>
+          <label className={labelClass}>Deskripsi Singkat (tampil di landing)</label>
+          <textarea
+            name="description"
+            rows={2}
+            maxLength={240}
+            placeholder="Bob modern dengan bentuk yang presisi."
+            defaultValue={item?.description ?? ""}
+            className={inputClass}
+          />
+        </div>
+
+        <div>
+          <label className={labelClass}>Sub-kategori Produk (opsional, filter di Shop)</label>
+          <input
+            name="subcategory"
+            maxLength={50}
+            placeholder="Shampoo, Serum, Conditioner..."
+            defaultValue={item?.subcategory ?? ""}
+            className={inputClass}
+          />
+        </div>
+
+        <div>
+          <label className={labelClass}>URL Gambar (opsional, untuk produk retail / best seller)</label>
           <input name="imageUrl" type="url" placeholder="https://..." defaultValue={item?.imageUrl ?? ""} className={inputClass} />
         </div>
 
         <label className="flex items-center gap-2 pt-1 font-bold">
           <input name="isAvailable" type="checkbox" defaultChecked={item?.isAvailable ?? true} className="h-4 w-4 accent-blush-500" />
           Status Aktif Tersedia
+        </label>
+
+        <label className="flex items-center gap-2 font-bold">
+          <input name="isBestSeller" type="checkbox" defaultChecked={item?.isBestSeller ?? false} className="h-4 w-4 accent-blush-500" />
+          Tandai sebagai Best Seller (maks. 4 tampil di landing)
         </label>
 
         <div className="flex justify-end gap-2 pt-2">
