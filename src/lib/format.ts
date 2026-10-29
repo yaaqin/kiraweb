@@ -1,4 +1,4 @@
-import type { Category, PaymentMethod } from "./types";
+import type { BookingStatus, Category, PaymentMethod } from "./types";
 
 export const rupiah = (value: number) => `Rp ${value.toLocaleString("id-ID")}`;
 
@@ -34,4 +34,11 @@ export const ACCOUNT_LABELS: Record<PaymentMethod, string> = {
   CASH: "101 - Kas Fisik Kasir",
   QRIS: "102 - Bank QRIS",
   TRANSFER: "103 - Bank Transfer",
+};
+
+export const BOOKING_STATUS: Record<BookingStatus, { label: string; className: string }> = {
+  NEW: { label: "Baru", className: "bg-blush-100 text-blush-600" },
+  CONFIRMED: { label: "Dikonfirmasi", className: "bg-emerald-100 text-emerald-700" },
+  DONE: { label: "Selesai", className: "bg-gray-100 text-gray-600" },
+  CANCELLED: { label: "Batal", className: "bg-red-50 text-red-600" },
 };

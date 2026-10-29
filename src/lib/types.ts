@@ -34,7 +34,25 @@ export interface CatalogItem {
   price: number;
   duration: string | null;
   imageUrl: string | null;
+  description: string | null;
+  subcategory: string | null;
+  isBestSeller: boolean;
   isAvailable: boolean;
+}
+
+export type BookingStatus = "NEW" | "CONFIRMED" | "DONE" | "CANCELLED";
+
+export interface Booking {
+  id: number;
+  name: string;
+  phone: string;
+  preferredDate: string;
+  preferredTime: string;
+  note: string | null;
+  items: { name: string; price: number; qty: number }[];
+  total: number;
+  status: BookingStatus;
+  createdAt: string;
 }
 
 export interface TransactionItem {

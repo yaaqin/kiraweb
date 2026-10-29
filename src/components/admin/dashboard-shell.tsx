@@ -7,6 +7,7 @@ import type { IconType } from "react-icons";
 import {
   FaArrowRightFromBracket,
   FaBars,
+  FaCalendarCheck,
   FaCashRegister,
   FaChartPie,
   FaReceipt,
@@ -31,6 +32,7 @@ interface NavItem {
 const NAV: NavItem[] = [
   { href: "/dashboard", label: "Ringkasan Sales", subtitle: "Performa omset & metode pembayaran hari ini", icon: FaChartPie },
   { href: "/dashboard/pos", label: "POS & Billing", subtitle: "Kalkulator kasir & cetak struk", icon: FaCashRegister },
+  { href: "/dashboard/bookings", label: "Booking Masuk", subtitle: "Permintaan jadwal dari website", icon: FaCalendarCheck },
   { href: "/dashboard/catalog", label: "Catalog & Harga", subtitle: "Ubah tarif treatment & produk", icon: FaScissors },
   { href: "/dashboard/transactions", label: "Riwayat Pembayaran", subtitle: "Arsip nota pembayaran", icon: FaReceipt },
   { href: "/dashboard/finance", label: "Keuangan", subtitle: "Buku besar, arus kas, neraca & petty cash", icon: FaWallet, roles: ["SUPERADMIN"] },
